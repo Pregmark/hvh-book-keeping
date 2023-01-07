@@ -21,10 +21,10 @@ def parse_bank_statements():
 
 def verify_bank_statement_date(bank_statement):
     # Convert date str to datetime object
-    bank_statement_datetime = format_bank_statement(bank_statement[0:10])
+    bank_statement_datetime = format_bank_statement(bank_statement)
 
     # Returns true if the statement date is within the financial year
-    return bank_statement_datetime < financial_year_start or bank_statement_datetime > financial_year_end
+    return financial_year_start < bank_statement_datetime < financial_year_end
 
 
 def parse_receipts():
