@@ -1,5 +1,5 @@
-from datetime import datetime
 import csv
+from datetime import datetime
 from os import walk
 
 financial_year_start = datetime(datetime.today().year - 2, 10, 1)
@@ -9,7 +9,6 @@ financial_year_end = datetime(datetime.today().year - 1, 9, 30)
 def parse_bank_statements():
     with open(r'C:\Users\Samuel\Downloads\bank_statements_' + str(financial_year_end.year) + '.csv', 'r') \
             as statement_file:
-
         reader = csv.reader(statement_file)
         # Skip first line containing headers
         next(reader)
@@ -31,7 +30,8 @@ def verify_bank_statement_date(bank_statement):
 def parse_receipts():
     receipts_list = []
 
-    for(dir_path, dir_names, file_names) in walk(r'C:\Users\Samuel\Downloads\receipts_' + str(financial_year_end.year)):
+    for (dir_path, dir_names, file_names) in walk(
+            r'C:\Users\Samuel\Downloads\receipts_' + str(financial_year_end.year)):
         for file_name in file_names:
             if file_name and file_name[0].isdigit():
                 # Only take the date from the file name
@@ -41,8 +41,6 @@ def parse_receipts():
 
 
 def find_missing_receipts(bank_statements, receipts):
-    matched_statements = []
-
     bank_statements_formatted = [format_bank_statement(d) for d in bank_statements]
     receipts_formatted = [format_receipt(d) for d in receipts]
 
@@ -50,8 +48,6 @@ def find_missing_receipts(bank_statements, receipts):
     for u, uf in zip(bank_statements, bank_statements_formatted):
         if uf not in receipts_formatted:
             print(u)
-
-    return matched_statements
 
 
 def format_bank_statement(date):
