@@ -46,7 +46,7 @@ def find_missing_receipts(bank_statements, receipts):
 
     # If no matching receipt is found for a statement, print out the statement
     for u, uf in zip(bank_statements, bank_statements_formatted):
-        if uf not in receipts_formatted:
+        if uf not in receipts_formatted and 'Banktjänster' not in u:
             print(u)
 
 
