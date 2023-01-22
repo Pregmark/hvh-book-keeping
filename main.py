@@ -24,7 +24,7 @@ def verify_bank_statement_date(bank_statement):
     bank_statement_datetime = format_bank_statement(bank_statement)
 
     # Returns true if the statement date is within the financial year
-    return financial_year_start < bank_statement_datetime < financial_year_end
+    return financial_year_start <= bank_statement_datetime <= financial_year_end
 
 
 def parse_receipts():
